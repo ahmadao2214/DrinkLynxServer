@@ -18,10 +18,8 @@ public class DrinkLynxServer {
 	private Socket clientSocket;
 	private int portNumber;
 	private Date Time = new Date();
-	SimpleDateFormat sdf = new SimpleDateFormat("[hh:mm:ss a] ");
-	Bars db = new Bars();
-	ArrayList<Double[]> barCoords = new ArrayList<Double[]>();
 	private Double lat, lng;
+	SimpleDateFormat sdf = new SimpleDateFormat("[hh:mm:ss a] ");
 
 	public DrinkLynxServer(int port) {
 		this.portNumber = port;
@@ -33,55 +31,21 @@ public class DrinkLynxServer {
 
 		while (true) {
 			try {
-				// Create Server
 				serverSocket = new ServerSocket(portNumber);
 				clientSocket = serverSocket.accept();
-
 				String clientName = clientSocket.getInetAddress().getHostName();
 				System.out.println(sdf.format(Time) + " New Client Connected: "	+ clientName);
-
-				//ArrayList<String> radius = new ArrayList<String>();
-
-				// Get Bar Name
-				//InputStream inStream = clientSocket.getInputStream();
-				//PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-				//BufferedReader in = new BufferedReader(new InputStreamReader(inStream));
+				
 				DataOutputStream output= new DataOutputStream(clientSocket.getOutputStream());
 				DataInputStream input= new DataInputStream(clientSocket.getInputStream());	
 				BufferedReader in = new BufferedReader(new InputStreamReader(input));
-				String inputLine = "";
-				while ((inputLine = in.readLine()) != null) {
-					//inputLine = input.readUTF();
+				while ((String inputLine = in.readLine()) != null) {
 					System.out.println("Received from client: " + inputLine);
 					output.writeUTF(inputLine + " FROM SERVER");
 					System.out.println("ITEM SENT");
-					//radius.add(inputLine);
 				}
-				
 				output.close();
-				in.close();
-				System.out.println("OUT OF DA LOOP");
-
-				/*BarRadius br = new BarRadius(radius.get(0), radius.get(1),radius.get(2), radius.get(3));
-				barCoords = db.getCoords();
-				for (Double[] latlng : barCoords) {
-					lat = latlng[0];
-					lng = latlng[1];
-					for (String t : db.getTitles()) {
-						//if (br.withinRange(lat, lng)) {
-							System.out.println("" + lat + "," + lng + "," + t);
-							out.println("" + lat + "," + lng + "," + t);
-						//} else{
-							//System.out.println("" + lat + "," + lng + "," + t + " not within range");
-							//out.println("" + lat + "," + lng + "," + t	+ " not within range");
-						//}
-					}
-				}*/
-
-				// Close All The Things
-				
-				//in.close();	
-				
+				in.close();				
 				clientSocket.close();
 				
 			} catch (IOException e) {

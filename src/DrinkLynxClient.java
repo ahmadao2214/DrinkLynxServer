@@ -30,9 +30,7 @@ public class DrinkLynxClient {
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			
 			System.out.println(StringData);
-			
-			String inputLine = null;
-			inputLine = in.readLine();
+			String inputLine = in.readLine();
 			System.out.println(inputLine);
 		} 
 		catch (UnknownHostException e) {

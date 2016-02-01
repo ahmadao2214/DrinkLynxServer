@@ -1,6 +1,5 @@
 // Basic Usage Server: "DrinkLynx [-s] [Port Number]
 // Basic Usage Client: "DrinkLynx [hostName] [Port#] [StringData]
-
 import java.io.IOException;
 
 public class DrinkLynx {
