@@ -17,25 +17,16 @@ public class Bars {
 		for (Double[]v: hashDB.values()) {
 			coords.add(v);
 		}
-		
 		latlngs = coords;
 		
 		ArrayList<String> titles = new ArrayList<String>();
 		for (String s : hashDB.keySet()) {
 			titles.add(s);
 		}
-		
 		barTitles = titles;
 	}
 
-
-
-	public ArrayList<String> getTitles() {
-		return barTitles;
-	}
-
-	public ArrayList<Double[]> getCoords(){
-		return latlngs;
-	}
+	public ArrayList<String> getTitles() {return barTitles;	}
+	public ArrayList<Double[]> getCoords(){return latlngs; }
 
 }
