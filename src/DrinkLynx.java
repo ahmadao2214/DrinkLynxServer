@@ -7,7 +7,7 @@ public class DrinkLynx {
 	public static void main(String[] args) throws IOException {
 		
 		if (args.length == 2) {
-			//Server
+			//Serverm
 			if (args[0].equals("-s")) {
 				int port = Integer.parseInt(args[1]);
 				DrinkLynxServer server = new DrinkLynxServer(port);
